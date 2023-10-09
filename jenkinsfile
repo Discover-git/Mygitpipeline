@@ -1,7 +1,7 @@
 node {
     stage('Checkout') {
         // Check out the code from the Git repository into a folder
-        checkout([$class: 'GitSCM', branches: [[name: 'Develop']], userRemoteConfigs: [[url: 'https://your-repo-url.git']]])
+        checkout([$class: 'GitSCM', branches: [[name: 'develop']], userRemoteConfigs: [[url:https://github.com/Discover-git/Mygitpipeline.git]]])
     }
 
     stage('Pull to Folder') {
@@ -11,7 +11,7 @@ node {
         // Create the folder if it doesn't exist
         dir(targetFolder) {
             // Pull the content into the folder
-            sh 'git pull origin Develop'
+            sh 'git pull origin develop'
         }
     }
 
