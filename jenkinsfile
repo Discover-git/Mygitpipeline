@@ -1,11 +1,19 @@
-pipeline {
-    agent any
+node {
+    stage('Checkout') {
+        // Check out the code from the Git repository into a folder
+        checkout([$class: 'GitSCM', branches: [[name: 'develop']], userRemoteConfigs: [[https://github.com/Discover-git/Mygitpipeline.git]]])
+    }
 
-    stages {
-        stage('Hello') {
-            steps {
-                echo 'Hello World Modified to this is my git pipeline'
-            }
+    stage('Pull to Folder') {
+        // Define the folder where you want to pull the content
+        def targetFolder = 'my-folder'
+        
+        // Create the folder if it doesn't exist
+        dir(targetFolder) {
+            // Pull the content into the folder
+            sh 'git pull origin develop'
         }
     }
+
+    // Add more stages for your pipeline tasks
 }
