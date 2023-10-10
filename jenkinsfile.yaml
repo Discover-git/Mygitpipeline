@@ -1,4 +1,4 @@
-//node {
+node {
     stage('Checkout') {
         // Check out the code from the Git repository into a folder
         checkout([$class: 'GitSCM', branches: [[name: 'develop']], userRemoteConfigs: [[https://github.com/Discover-git/Mygitpipeline.git]]])
